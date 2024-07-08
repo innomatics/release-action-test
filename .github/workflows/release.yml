@@ -10,5 +10,10 @@ jobs:
   PrintJob:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: ./.github/actions/print-job
+      - name: Dump GitHub context
+        shell: bash
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          echo "$GITHUB_CONTEXT"
+
