@@ -1,0 +1,14 @@
+name: Promote Image
+
+on:
+  release:
+    types:
+      - released
+      - published
+
+jobs:
+  PrintJob:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: ./.github/actions/print-job
