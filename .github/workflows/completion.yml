@@ -23,7 +23,7 @@ jobs:
       - uses: octokit/request-action@v2.x
         id: dispatch_failure
         with:
-          route: POST /api.github.com/repos/innomatics/release-action-test/actions/workflows/failure/dispatches
+          route: POST /api.github.com/repos/innomatics/release-action-test/actions/workflows/failure.yml/dispatches
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
  
