@@ -4,7 +4,7 @@
 # This is invoked by the 'Completion' workflow
 name: Failure
 on:
-  workflow_call:
+  workflow_dispatch:
 
 jobs:
   failure-reporting-job:
