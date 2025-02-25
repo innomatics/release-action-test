@@ -1,0 +1,16 @@
+# Simply a failure workflow which can be subscribed to e.g. by the Slack GitHub bot
+# (why is this needed: https://github.com/integrations/slack/issues/1563)
+#
+# This is invoked by the 'Completion' workflow
+name: Failure
+on:
+  workflow_call:
+
+jobs:
+  failure-reporting-job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/print-job
+      # Do nothing, unsuccessfully
+      - run: false 

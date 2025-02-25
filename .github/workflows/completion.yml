@@ -1,0 +1,34 @@
+# Runs on completion (success or fail) of specified workflows
+name: Completion
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - Test
+    types:
+      - completed
+
+jobs:
+  on-success:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - run: echo 'The triggering workflow passed'
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/print-job
+  on-failure:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - uses: octokit/request-action@v2.x
+        id: dispatch_failure
+        with:
+          route: POST /api.github.com/repos/agrinous/agrinous-data/actions/workflows/Failure/dispatches
+          owner: agrinous
+          repo: request-action
+          body: ${{ toJSON(env.REQUEST_BODY) }} 
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REQUEST_BODY: '{}'
+ 
+      - run: "echo github_api_output: '${{ steps.dispatch_failure.outputs.data }}'"
