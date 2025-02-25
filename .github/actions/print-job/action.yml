@@ -1,5 +1,4 @@
 name: Print Job
-description: Print out the GitHub context and other info to help troubleshoot any CI issues
 runs:
   using: composite
   steps:
