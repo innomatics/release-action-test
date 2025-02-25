@@ -23,7 +23,10 @@ jobs:
       - uses: octokit/request-action@v2.x
         id: dispatch_failure
         with:
-          route: POST /api.github.com/repos/agrinous/agrinous-data/actions/workflows/failure/dispatches
+          route: POST /api.github.com/repos/{owner}/{repo}/actions/workflows/failure/dispatches
+          owner: innomatics 
+          repo: request-action-test
+          body: ${{ toJSON(env.REQUEST_BODY) }} 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REQUEST_BODY: '{}'
