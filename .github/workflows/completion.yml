@@ -23,12 +23,8 @@ jobs:
       - uses: octokit/request-action@v2.x
         id: dispatch_failure
         with:
-          route: POST /api.github.com/repos/{owner}/{repo}/actions/workflows/failure/dispatches
-          owner: innomatics 
-          repo: request-action-test
-          body: ${{ toJSON(env.REQUEST_BODY) }} 
+          route: POST /api.github.com/repos/innomatics/release-action-test/actions/workflows/failure/dispatches
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REQUEST_BODY: '{}'
  
       - run: "echo github_api_output: '${{ steps.dispatch_failure.outputs.data }}'"
