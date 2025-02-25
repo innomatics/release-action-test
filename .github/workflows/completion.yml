@@ -26,7 +26,7 @@ jobs:
         id: dispatch_failure
         with:
           route: POST /repos/${{ github.repository }}/actions/workflows/failure.yml/dispatches
-          ref: 'develop'
+          ref: 'main'
           inputs: '{}'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
