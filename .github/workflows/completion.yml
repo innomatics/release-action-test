@@ -6,7 +6,6 @@ on:
       - main
     workflows: # The important workflows
       - Test 
-      - Release
     types:
       - completed
 
